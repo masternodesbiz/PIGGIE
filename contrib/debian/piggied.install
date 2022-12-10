@@ -1,0 +1,3 @@
+usr/local/bin/piggied usr/bin
+usr/local/bin/piggie-cli usr/bin
+debian/examples/piggie.conf etc/piggie

@@ -1,0 +1,11 @@
+[Protocol]
+exec=piggie-qt '%u'
+protocol=piggie
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

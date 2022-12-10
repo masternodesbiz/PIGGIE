@@ -1,0 +1,851 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/piggie-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# piggie qt core #
+QT_TS = \
+  qt/locale/piggie_bg.ts \
+  qt/locale/piggie_ca.ts \
+  qt/locale/piggie_cs.ts \
+  qt/locale/piggie_da.ts \
+  qt/locale/piggie_de.ts \
+  qt/locale/piggie_en.ts \
+  qt/locale/piggie_en_GB.ts \
+  qt/locale/piggie_en_US.ts \
+  qt/locale/piggie_eo.ts \
+  qt/locale/piggie_es.ts \
+  qt/locale/piggie_es_ES.ts \
+  qt/locale/piggie_fi.ts \
+  qt/locale/piggie_fr_FR.ts \
+  qt/locale/piggie_hi_IN.ts \
+  qt/locale/piggie_hr.ts \
+  qt/locale/piggie_hr_HR.ts \
+  qt/locale/piggie_it.ts \
+  qt/locale/piggie_ja.ts \
+  qt/locale/piggie_ko_KR.ts \
+  qt/locale/piggie_lt_LT.ts \
+  qt/locale/piggie_nl.ts \
+  qt/locale/piggie_pl.ts \
+  qt/locale/piggie_pt.ts \
+  qt/locale/piggie_pt_BR.ts \
+  qt/locale/piggie_ro_RO.ts \
+  qt/locale/piggie_ru.ts \
+  qt/locale/piggie_sk.ts \
+  qt/locale/piggie_sv.ts \
+  qt/locale/piggie_tr.ts \
+  qt/locale/piggie_uk.ts \
+  qt/locale/piggie_vi.ts \
+  qt/locale/piggie_zh_CN.ts \
+  qt/locale/piggie_zh_TW.ts
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/blockexplorer.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/governancepage.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/piggie/forms/loadingdialog.ui \
+  qt/forms/zpiggiecontroldialog.ui \
+  qt/piggie/forms/snackbar.ui \
+  qt/piggie/forms/navmenuwidget.ui \
+  qt/piggie/forms/lockunlock.ui \
+  qt/piggie/forms/expandablebutton.ui \
+  qt/piggie/forms/receivedialog.ui \
+  qt/piggie/forms/walletpassworddialog.ui \
+  qt/piggie/forms/topbar.ui \
+  qt/piggie/forms/txrow.ui \
+  qt/piggie/forms/dashboardwidget.ui \
+  qt/piggie/forms/coincontrolpiggiewidget.ui \
+  qt/piggie/forms/addresslabelrow.ui \
+  qt/piggie/forms/contactdropdownrow.ui \
+  qt/piggie/forms/mninfodialog.ui \
+  qt/piggie/forms/optionbutton.ui \
+  qt/piggie/forms/masternodewizarddialog.ui \
+  qt/piggie/forms/mnrow.ui \
+  qt/piggie/forms/masternodeswidget.ui \
+  qt/piggie/forms/myaddressrow.ui \
+  qt/piggie/forms/csrow.ui \
+  qt/piggie/forms/sendchangeaddressdialog.ui \
+  qt/piggie/forms/sendconfirmdialog.ui \
+  qt/piggie/forms/sendcustomfeedialog.ui \
+  qt/piggie/forms/sendchangeaddressdialog.ui \
+  qt/piggie/forms/sendmultirow.ui \
+  qt/piggie/forms/send.ui \
+  qt/piggie/forms/addnewaddressdialog.ui \
+  qt/piggie/forms/addnewcontactdialog.ui \
+  qt/piggie/forms/requestdialog.ui \
+  qt/piggie/forms/receivewidget.ui \
+  qt/piggie/forms/tooltipmenu.ui \
+  qt/piggie/forms/addresseswidget.ui \
+  qt/piggie/forms/defaultdialog.ui \
+  qt/piggie/forms/denomgenerationdialog.ui \
+  qt/piggie/forms/privacywidget.ui \
+  qt/piggie/forms/coldstakingwidget.ui \
+  qt/piggie/settings/forms/settingsbackupwallet.ui \
+  qt/piggie/settings/forms/settingsbittoolwidget.ui \
+  qt/piggie/settings/forms/settingsconsolewidget.ui \
+  qt/piggie/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/piggie/settings/forms/settingsfaqwidget.ui \
+  qt/piggie/settings/forms/settingsinformationwidget.ui \
+  qt/piggie/settings/forms/settingsmainoptionswidget.ui \
+  qt/piggie/settings/forms/settingsmultisenddialog.ui \
+  qt/piggie/settings/forms/settingsmultisendwidget.ui \
+  qt/piggie/settings/forms/settingssignmessagewidgets.ui \
+  qt/piggie/settings/forms/settingswalletoptionswidget.ui \
+  qt/piggie/settings/forms/settingswalletrepairwidget.ui \
+  qt/piggie/settings/forms/settingswidget.ui \
+  qt/piggie/forms/welcomecontentwidget.ui \
+  qt/piggie/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/moc_bitcoinamountfield.cpp \
+  qt/piggie/moc_piggiegui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_blockexplorer.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_governancepage.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_proposalframe.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_splashscreen.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactiondesc.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/piggie/moc_loadingdialog.cpp \
+  qt/moc_zpiggiecontroldialog.cpp \
+  qt/piggie/moc_pwidget.cpp \
+  qt/piggie/moc_snackbar.cpp \
+  qt/piggie/moc_navmenuwidget.cpp \
+  qt/piggie/moc_lockunlock.cpp \
+  qt/piggie/moc_expandablebutton.cpp \
+  qt/piggie/moc_furabstractlistitemdelegate.cpp \
+  qt/piggie/moc_receivedialog.cpp \
+  qt/piggie/moc_walletpassworddialog.cpp \
+  qt/piggie/moc_pfborderimage.cpp \
+  qt/piggie/moc_topbar.cpp \
+  qt/piggie/moc_txrow.cpp \
+  qt/piggie/moc_dashboardwidget.cpp \
+  qt/piggie/moc_coincontrolpiggiewidget.cpp \
+  qt/piggie/moc_addresslabelrow.cpp \
+  qt/piggie/moc_contactdropdownrow.cpp \
+  qt/piggie/moc_mninfodialog.cpp \
+  qt/piggie/moc_optionbutton.cpp \
+  qt/piggie/moc_coldstakingmodel.cpp \
+  qt/piggie/moc_mnmodel.cpp \
+  qt/piggie/moc_masternodewizarddialog.cpp \
+  qt/piggie/moc_mnrow.cpp \
+  qt/piggie/moc_masternodeswidget.cpp \
+  qt/piggie/moc_myaddressrow.cpp \
+  qt/piggie/moc_csrow.cpp \
+  qt/piggie/moc_contactsdropdown.cpp \
+  qt/piggie/moc_sendchangeaddressdialog.cpp \
+  qt/piggie/moc_sendconfirmdialog.cpp \
+  qt/piggie/moc_sendcustomfeedialog.cpp \
+  qt/piggie/moc_sendchangeaddressdialog.cpp \
+  qt/piggie/moc_sendmultirow.cpp \
+  qt/piggie/moc_send.cpp \
+  qt/piggie/moc_addnewaddressdialog.cpp \
+  qt/piggie/moc_addnewcontactdialog.cpp \
+  qt/piggie/moc_requestdialog.cpp \
+  qt/piggie/moc_receivewidget.cpp \
+  qt/piggie/moc_tooltipmenu.cpp \
+  qt/piggie/moc_addresseswidget.cpp \
+  qt/piggie/moc_defaultdialog.cpp \
+  qt/piggie/moc_denomgenerationdialog.cpp \
+  qt/piggie/moc_privacywidget.cpp \
+  qt/piggie/moc_coldstakingwidget.cpp \
+  qt/piggie/settings/moc_settingsbackupwallet.cpp \
+  qt/piggie/settings/moc_settingsbittoolwidget.cpp \
+  qt/piggie/settings/moc_settingsconsolewidget.cpp \
+  qt/piggie/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/piggie/settings/moc_settingsfaqwidget.cpp \
+  qt/piggie/settings/moc_settingsinformationwidget.cpp \
+  qt/piggie/settings/moc_settingsmainoptionswidget.cpp \
+  qt/piggie/settings/moc_settingsmultisenddialog.cpp \
+  qt/piggie/settings/moc_settingsmultisendwidget.cpp \
+  qt/piggie/settings/moc_settingssignmessagewidgets.cpp \
+  qt/piggie/settings/moc_settingswalletoptionswidget.cpp \
+  qt/piggie/settings/moc_settingswalletrepairwidget.cpp \
+  qt/piggie/settings/moc_settingswidget.cpp \
+  qt/piggie/moc_welcomecontentwidget.cpp \
+  qt/piggie/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/piggie.moc \
+  qt/bitcoinamountfield.moc \
+  qt/intro.moc \
+  qt/rpcconsole.moc \
+  qt/piggie/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_piggie.cpp
+QT_QRC = qt/piggie.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_piggie_locale.cpp
+QT_QRC_LOCALE = qt/piggie_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/bitcoinamountfield.h \
+  qt/piggie/piggiegui.h \
+  qt/bitcoinunits.h \
+  qt/blockexplorer.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/governancepage.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/proposalframe.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/splashscreen.h \
+  qt/trafficgraphwidget.h \
+  qt/transactiondesc.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/piggie/prunnable.h \
+  qt/piggie/pfborderimage.h \
+  qt/piggie/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/zpiggiecontroldialog.h \
+  qt/piggie/pwidget.h \
+  qt/piggie/guitransactionsutils.h \
+  qt/piggie/snackbar.h \
+  qt/piggie/navmenuwidget.h \
+  qt/piggie/lockunlock.h \
+  qt/piggie/receivedialog.h \
+  qt/piggie/furlistrow.h \
+  qt/piggie/furabstractlistitemdelegate.h \
+  qt/piggie/txviewholder.h \
+  qt/piggie/qtutils.h \
+  qt/piggie/expandablebutton.h \
+  qt/piggie/walletpassworddialog.h \
+  qt/piggie/topbar.h \
+  qt/piggie/txrow.h \
+  qt/piggie/addressholder.h \
+  qt/piggie/addressfilterproxymodel.h \
+  qt/piggie/dashboardwidget.h \
+  qt/piggie/coincontrolpiggiewidget.h \
+  qt/piggie/addresslabelrow.h \
+  qt/piggie/contactdropdownrow.h \
+  qt/piggie/mninfodialog.h \
+  qt/piggie/optionbutton.h \
+  qt/piggie/coldstakingmodel.h \
+  qt/piggie/mnmodel.h \
+  qt/piggie/masternodewizarddialog.h \
+  qt/piggie/mnrow.h \
+  qt/piggie/masternodeswidget.h \
+  qt/piggie/myaddressrow.h \
+  qt/piggie/csrow.h \
+  qt/piggie/contactsdropdown.h \
+  qt/piggie/sendchangeaddressdialog.h \
+  qt/piggie/sendconfirmdialog.h \
+  qt/piggie/sendcustomfeedialog.h \
+  qt/piggie/sendchangeaddressdialog.h \
+  qt/piggie/sendmultirow.h \
+  qt/piggie/send.h \
+  qt/piggie/addnewaddressdialog.h \
+  qt/piggie/addnewcontactdialog.h \
+  qt/piggie/requestdialog.h \
+  qt/piggie/receivewidget.h \
+  qt/piggie/tooltipmenu.h \
+  qt/piggie/addresseswidget.h \
+  qt/piggie/defaultdialog.h \
+  qt/piggie/denomgenerationdialog.h \
+  qt/piggie/privacywidget.h \
+  qt/piggie/coldstakingwidget.h \
+  qt/piggie/settings/settingsbackupwallet.h \
+  qt/piggie/settings/settingsbittoolwidget.h \
+  qt/piggie/settings/settingsconsolewidget.h \
+  qt/piggie/settings/settingsdisplayoptionswidget.h \
+  qt/piggie/settings/settingsfaqwidget.h \
+  qt/piggie/settings/settingsinformationwidget.h \
+  qt/piggie/settings/settingsmainoptionswidget.h \
+  qt/piggie/settings/settingsmultisenddialog.h \
+  qt/piggie/settings/settingsmultisendwidget.h \
+  qt/piggie/settings/settingssignmessagewidgets.h \
+  qt/piggie/settings/settingswalletoptionswidget.h \
+  qt/piggie/settings/settingswalletrepairwidget.h \
+  qt/piggie/settings/settingswidget.h \
+  qt/piggie/welcomecontentwidget.h \
+  qt/piggie/splash.h
+
+RES_ICONS = \
+  qt/res/icons/add.png \
+  qt/res/icons/address-book.png \
+  qt/res/icons/automint_active.png \
+  qt/res/icons/automint_inactive.png \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/browse.png \
+  qt/res/icons/clock1.png \
+  qt/res/icons/clock2.png \
+  qt/res/icons/clock3.png \
+  qt/res/icons/clock4.png \
+  qt/res/icons/clock5.png \
+  qt/res/icons/configure.png \
+  qt/res/icons/connect0_16.png \
+  qt/res/icons/connect1_16.png \
+  qt/res/icons/connect2_16.png \
+  qt/res/icons/connect3_16.png \
+  qt/res/icons/connect4_16.png \
+  qt/res/icons/debugwindow.png \
+  qt/res/icons/edit.png \
+  qt/res/icons/editcopy.png \
+  qt/res/icons/editpaste.png \
+  qt/res/icons/explorer.png \
+  qt/res/icons/export.png \
+  qt/res/icons/eye.png \
+  qt/res/icons/eye_minus.png \
+  qt/res/icons/eye_plus.png \
+  qt/res/icons/filesave.png \
+  qt/res/icons/history.png \
+  qt/res/icons/key.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/masternodes.png \
+  qt/res/icons/onion.png \
+  qt/res/icons/overview.png \
+  qt/res/icons/qrcode.png \
+  qt/res/icons/quit.png \
+  qt/res/icons/receive.png \
+  qt/res/icons/receive_dark.png \
+  qt/res/icons/privacy.png \
+  qt/res/icons/remove.png \
+  qt/res/icons/send.png \
+  qt/res/icons/send_dark.png \
+  qt/res/icons/governance.png \
+  qt/res/icons/governance_dark.png \
+  qt/res/icons/staking_active.png \
+  qt/res/icons/staking_inactive.png \
+  qt/res/icons/synced.png \
+  qt/res/icons/trade.png \
+  qt/res/icons/transaction0.png \
+  qt/res/icons/transaction2.png \
+  qt/res/icons/transaction_conflicted.png \
+  qt/res/icons/tx_inout.png \
+  qt/res/icons/tx_input.png \
+  qt/res/icons/tx_output.png \
+  qt/res/icons/tx_mined.png \
+  qt/res/icons/ic-transaction-received.png \
+  qt/res/icons/ic-transaction-mint.png \
+  qt/res/icons/ic-transaction-sent.png \
+  qt/res/icons/ic-transaction-staked.png \
+  qt/res/icons/unit_piggie.png \
+  qt/res/icons/unit_mpiggie.png \
+  qt/res/icons/unit_upiggie.png \
+  qt/res/icons/unit_tpiggie.png \
+  qt/res/icons/unit_tmpiggie.png \
+  qt/res/icons/unit_tupiggie.png \
+  qt/res/icons/yesvote.png \
+  qt/res/icons/novote.png \
+  qt/res/icons/abstainvote.png \
+  qt/piggie/res/img/bg-dashboard-banner.png \
+  qt/piggie/res/img/bg-multi-number-dark.png \
+  qt/piggie/res/img/ic-check-locked.png \
+  qt/piggie/res/img/ic-nav-address.png \
+  qt/piggie/res/img/ic-update.png \
+  qt/piggie/res/img/bg-multi-number.png \
+  qt/piggie/res/img/ic-check-mint-off.png \
+  qt/piggie/res/img/ic-nav-cold-staking.png \
+  qt/piggie/res/img/ic-nav-cold-staking-active.png \
+  qt/piggie/res/img/ic-nav-dashboard-active.png \
+  qt/piggie/res/img/ic-wallet-status-locked.png \
+  qt/piggie/res/img/bg-splash.png \
+  qt/piggie/res/img/bg-splash.png \
+  qt/piggie/res/img/ic-check-mint.png \
+  qt/piggie/res/img/ic-nav-dashboard-hover.png \
+  qt/piggie/res/img/ic-wallet-status-staking.png \
+  qt/piggie/res/img/ic-check-peers-off.png \
+  qt/piggie/res/img/ic-nav-dashboard.png \
+  qt/piggie/res/img/ic-wallet-status-unlocked.png \
+  qt/piggie/res/img/ic-check-peers.png \
+  qt/piggie/res/img/ic-nav-master-active.png \
+  qt/piggie/res/img/ic-watch-password-white.png \
+  qt/piggie/res/img/bg-welcome-container.png \
+  qt/piggie/res/img/ic-check-staking-off.png \
+  qt/piggie/res/img/ic-nav-master-hover.png \
+  qt/piggie/res/img/ic-watch-password.png \
+  qt/piggie/res/img/bg-welcome.png \
+  qt/piggie/res/img/ic-check-staking.png \
+  qt/piggie/res/img/ic-nav-master.png \
+  qt/piggie/res/img/btn-radio-active.png \
+  qt/piggie/res/img/ic-check-sync-off.png \
+  qt/piggie/res/img/ic-nav-privacy-active.png \
+  qt/piggie/res/img/img-empty-contacts.png \
+  qt/piggie/res/img/btn-radio-off.png \
+  qt/piggie/res/img/ic-check-sync.png \
+  qt/piggie/res/img/ic-nav-privacy-hover.png \
+  qt/piggie/res/img/img-empty-dark-contacts.png \
+  qt/piggie/res/img/ic-contact-arrow-down.png \
+  qt/piggie/res/img/ic-contact-arrow-down-white.png \
+  qt/piggie/res/img/ic-check-sync.png \
+  qt/piggie/res/img/ic-check-faq.png \
+  qt/piggie/res/img/ic-nav-privacy.png \
+  qt/piggie/res/img/img-empty-dark-error.png \
+  qt/piggie/res/img/ic-add-label.png \
+  qt/piggie/res/img/ic-pending.png \
+  qt/piggie/res/img/ic-check-theme-dark.png \
+  qt/piggie/res/img/ic-nav-receive-active.png \
+  qt/piggie/res/img/img-empty-dark-masternode.png \
+  qt/piggie/res/img/ic-add-liliac.png \
+  qt/piggie/res/img/ic-check-theme-light.png \
+  qt/piggie/res/img/ic-nav-receive-hover.png \
+  qt/piggie/res/img/img-empty-dark-multisend.png \
+  qt/piggie/res/img/ic-add-purple.png \
+  qt/piggie/res/img/ic-check-white.png \
+  qt/piggie/res/img/ic-nav-receive.png \
+  qt/piggie/res/img/img-empty-dark-peers.png \
+  qt/piggie/res/img/ic-add.png \
+  qt/piggie/res/img/ic-check.png \
+  qt/piggie/res/img/ic-nav-send-active.png \
+  qt/piggie/res/img/img-empty-dark-staking-off.png \
+  qt/piggie/res/img/img-empty-dark-staking-on.png \
+  qt/piggie/res/img/ic-address-book-grey.png \
+  qt/piggie/res/img/ic-chevron-left.png \
+  qt/piggie/res/img/ic-nav-send-hover.png \
+  qt/piggie/res/img/img-empty-dark-transactions.png \
+  qt/piggie/res/img/ic-address-book-white.png \
+  qt/piggie/res/img/ic-chevron-right.png \
+  qt/piggie/res/img/ic-nav-send.png \
+  qt/piggie/res/img/img-empty-error.png \
+  qt/piggie/res/img/ic-address-book.png \
+  qt/piggie/res/img/ic-clear-liliac.png \
+  qt/piggie/res/img/ic-nav-settings-active.png \
+  qt/piggie/res/img/img-empty-masternode.png \
+  qt/piggie/res/img/ic-address-send-white.png \
+  qt/piggie/res/img/ic-clear-purple.png \
+  qt/piggie/res/img/ic-nav-settings-hover.png \
+  qt/piggie/res/img/img-empty-multisend.png \
+  qt/piggie/res/img/ic-address-send.png \
+  qt/piggie/res/img/ic-close-white.png \
+  qt/piggie/res/img/ic-nav-settings.png \
+  qt/piggie/res/img/img-empty-peers.png \
+  qt/piggie/res/img/img-empty-privacy.png \
+  qt/piggie/res/img/img-empty-privacy-dark.png \
+  qt/piggie/res/img/ic-arrow-drop-down-white.png \
+  qt/piggie/res/img/ic-close.png \
+  qt/piggie/res/img/ic-radio-liliac-on.png \
+  qt/piggie/res/img/img-empty-staking-off.png \
+  qt/piggie/res/img/ic-arrow-drop-down.png \
+  qt/piggie/res/img/ic-coin-piggie.png \
+  qt/piggie/res/img/ic-receive-off.png \
+  qt/piggie/res/img/img-empty-staking-on.png \
+  qt/piggie/res/img/ic-arrow-drop-up-white.png \
+  qt/piggie/res/img/ic-coin-zpiggie.png \
+  qt/piggie/res/img/ic-receive-on.png \
+  qt/piggie/res/img/img-empty-transactions.png \
+  qt/piggie/res/img/ic-arrow-drop-up.png \
+  qt/piggie/res/img/ic-coin-zpiggie.png \
+  qt/piggie/res/img/ic-received.png \
+  qt/piggie/res/img/img-logo-piggie.png \
+  qt/piggie/res/img/ic-arrow-drop-white-down.png \
+  qt/piggie/res/img/ic-combo-box.png \
+  qt/piggie/res/img/ic-send.png \
+  qt/piggie/res/img/img-logo-piggie@2x.png \
+  qt/piggie/res/img/ic-arrow-purple-down.png \
+  qt/piggie/res/img/ic-connect.png \
+  qt/piggie/res/img/ic-submenu-lock.png \
+  qt/piggie/res/img/img-logo-piggie@3x.png \
+  qt/piggie/res/img/img-logo-piggie.png \
+  qt/piggie/res/img/ic-arrow-right-white.png \
+  qt/piggie/res/img/ic-arrow-left-white.png \
+  qt/piggie/res/img/ic-arrow-left.png \
+  qt/piggie/res/img/ic-copy-liliac.png \
+  qt/piggie/res/img/ic-submenu-staking.png \
+  qt/piggie/res/img/img-nav-logo-piggie.png \
+  qt/piggie/res/img/ic-arrow-right.png \
+  qt/piggie/res/img/ic-copy.png \
+  qt/piggie/res/img/ic-copy-big.png \
+  qt/piggie/res/img/ic-copy-big-white.png \
+  qt/piggie/res/img/ic-submenu-unlock.png \
+  qt/piggie/res/img/img-nav-logo.png \
+  qt/piggie/res/img/ic-arrow-white-left.png \
+  qt/piggie/res/img/ic-exit.png \
+  qt/piggie/res/img/ic-switch-liliac-on.png \
+  qt/piggie/res/img/img-nav-logo.png \
+  qt/piggie/res/img/ic-arrow-white-right.png \
+  qt/piggie/res/img/ic-expand.png \
+  qt/piggie/res/img/ic-switch-off.png \
+  qt/piggie/res/img/img-qr-test-big.png \
+  qt/piggie/res/img/ic-check-active.png \
+  qt/piggie/res/img/ic-folder.png \
+  qt/piggie/res/img/ic-switch-on.png \
+  qt/piggie/res/img/img-qr-test.png \
+  qt/piggie/res/img/ic-check-box.png \
+  qt/piggie/res/img/ic-check-box-dark-active.png \
+  qt/piggie/res/img/ic-check-box-indeterminate.png \
+  qt/piggie/res/img/ic-check-box-liliac-indeterminate.png \
+  qt/piggie/res/img/ic-label-liliac.png \
+  qt/piggie/res/img/ic-transaction-warning.png \
+  qt/piggie/res/img/ic-transaction-mint.png \
+  qt/piggie/res/img/ic-transaction-mint-inactive.png \
+  qt/piggie/res/img/ic-check-cold-staking.png \
+  qt/piggie/res/img/ic-check-cold-staking-off.png \
+  qt/piggie/res/img/ic-check-cold-staking-enabled.png \
+  qt/piggie/res/img/dark/ic-transaction-cs-contract.png \
+  qt/piggie/res/img/dark/ic-transaction-cs-contract-inactive.png \
+  qt/piggie/res/img/img-qr.png \
+  qt/piggie/res/img/ic-check-connect-off.png \
+  qt/piggie/res/img/ic-label.png \
+  qt/piggie/res/img/ic-transaction-received.png \
+  qt/piggie/res/img/dark/ic-transaction-received.png \
+  qt/piggie/res/img/dark/ic-transaction-warning.png \
+  qt/piggie/res/img/dark/ic-transaction-mint.png \
+  qt/piggie/res/img/dark/ic-transaction-mint-inactive.png \
+  qt/piggie/res/img/ic-transaction-received-inactive.png \
+  qt/piggie/res/img/dark/ic-transaction-received-inactive.png \
+  qt/piggie/res/img/img-welcome-step1.png \
+  qt/piggie/res/img/ic-check-connect.png \
+  qt/piggie/res/img/ic-menu-hover.png \
+  qt/piggie/res/img/ic-transaction-sent.png \
+  qt/piggie/res/img/ic-transaction-sent-inactive.png \
+  qt/piggie/res/img/dark/ic-transaction-sent.png \
+  qt/piggie/res/img/dark/ic-transaction-sent-inactive.png \
+  qt/piggie/res/img/img-welcome-step2.png \
+  qt/piggie/res/img/ic-check-dark.png \
+  qt/piggie/res/img/ic-mint.png \
+  qt/piggie/res/img/ic-transaction-staked.png \
+  qt/piggie/res/img/ic-transaction-staked-inactive.png \
+  qt/piggie/res/img/dark/ic-transaction-staked.png \
+  qt/piggie/res/img/dark/ic-transaction-staked-inactive.png \
+  qt/piggie/res/img/img-welcome-step3.png \
+  qt/piggie/res/img/ic-check-liliac-on.png \
+  qt/piggie/res/img/ic-nav-address-active.png \
+  qt/piggie/res/img/ic-unlock-staking.png \
+  qt/piggie/res/img/img-welcome-step4.png \
+  qt/piggie/res/img/ic-check-locked-off.png \
+  qt/piggie/res/img/ic-nav-address-hover.png \
+  qt/piggie/res/img/ic-update-liliac.png \
+  qt/piggie/res/img/ic-arrow-drop-down-purple.png \
+  qt/piggie/res/img/ic-arrow-drop-up-purple.png \
+  qt/piggie/res/img/ic-check-liliac-indeterminate.png \
+  qt/piggie/res/img/ic-check-box-liliac-indeterminate.png \
+  qt/piggie/res/img/ic-transaction-stake-delegated.png \
+  qt/piggie/res/img/ic-transaction-stake-delegated-inactive.png \
+  qt/piggie/res/img/ic-transaction-stake-hot.png \
+  qt/piggie/res/img/ic-transaction-stake-hot-inactive.png \
+  qt/piggie/res/img/dark/ic-transaction-stake-hot.png \
+  qt/piggie/res/img/dark/ic-transaction-stake-hot-inactive.png \
+  qt/piggie/res/img/dark/ic-transaction-stake-delegated.png \
+  qt/piggie/res/img/dark/ic-transaction-stake-delegated-inactive.png \
+  qt/piggie/res/img/ic-transaction-cs-contract.png \
+  qt/piggie/res/img/ic-transaction-cs-contract-inactive.png \
+  qt/piggie/res/img/ic-check-box-indeterminate.png \
+  qt/piggie/res/img/ani-loading-dark.gif \
+  qt/piggie/res/img/ani-loading.gif
+
+
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/bitcoinamountfield.cpp \
+  qt/piggie/piggiegui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/blockexplorer.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/splashscreen.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/blockexplorer.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/governancepage.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/proposalframe.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactiondesc.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/piggie/loadingdialog.cpp \
+  qt/zpiggiecontroldialog.cpp \
+  qt/piggie/pwidget.cpp \
+  qt/piggie/guitransactionsutils.cpp \
+  qt/piggie/snackbar.cpp \
+  qt/piggie/navmenuwidget.cpp \
+  qt/piggie/lockunlock.cpp \
+  qt/piggie/receivedialog.cpp \
+  qt/piggie/furabstractlistitemdelegate.cpp \
+  qt/piggie/txviewholder.cpp \
+  qt/piggie/qtutils.cpp \
+  qt/piggie/expandablebutton.cpp \
+  qt/piggie/walletpassworddialog.cpp \
+  qt/piggie/topbar.cpp \
+  qt/piggie/txrow.cpp \
+  qt/piggie/addressholder.cpp \
+  qt/piggie/addressfilterproxymodel.cpp \
+  qt/piggie/dashboardwidget.cpp \
+  qt/piggie/coincontrolpiggiewidget.cpp \
+  qt/piggie/addresslabelrow.cpp \
+  qt/piggie/contactdropdownrow.cpp \
+  qt/piggie/contactsdropdown.cpp \
+  qt/piggie/optionbutton.cpp \
+  qt/piggie/mninfodialog.cpp \
+  qt/piggie/coldstakingmodel.cpp \
+  qt/piggie/mnmodel.cpp \
+  qt/piggie/masternodewizarddialog.cpp \
+  qt/piggie/mnrow.cpp \
+  qt/piggie/masternodeswidget.cpp \
+  qt/piggie/myaddressrow.cpp \
+  qt/piggie/csrow.cpp \
+  qt/piggie/sendchangeaddressdialog.cpp \
+  qt/piggie/sendconfirmdialog.cpp \
+  qt/piggie/sendcustomfeedialog.cpp \
+  qt/piggie/sendchangeaddressdialog.cpp \
+  qt/piggie/sendmultirow.cpp \
+  qt/piggie/send.cpp \
+  qt/piggie/addnewaddressdialog.cpp \
+  qt/piggie/addnewcontactdialog.cpp \
+  qt/piggie/requestdialog.cpp \
+  qt/piggie/receivewidget.cpp \
+  qt/piggie/tooltipmenu.cpp \
+  qt/piggie/addresseswidget.cpp \
+  qt/piggie/defaultdialog.cpp \
+  qt/piggie/denomgenerationdialog.cpp \
+  qt/piggie/privacywidget.cpp \
+  qt/piggie/coldstakingwidget.cpp \
+  qt/piggie/settings/settingsbackupwallet.cpp \
+  qt/piggie/settings/settingsbittoolwidget.cpp \
+  qt/piggie/settings/settingsconsolewidget.cpp \
+  qt/piggie/settings/settingsdisplayoptionswidget.cpp \
+  qt/piggie/settings/settingsfaqwidget.cpp \
+  qt/piggie/settings/settingsinformationwidget.cpp \
+  qt/piggie/settings/settingsmainoptionswidget.cpp \
+  qt/piggie/settings/settingsmultisenddialog.cpp \
+  qt/piggie/settings/settingsmultisendwidget.cpp \
+  qt/piggie/settings/settingssignmessagewidgets.cpp \
+  qt/piggie/settings/settingswalletoptionswidget.cpp \
+  qt/piggie/settings/settingswalletrepairwidget.cpp \
+  qt/piggie/settings/settingswidget.cpp \
+  qt/piggie/welcomecontentwidget.cpp \
+  qt/piggie/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png \
+  qt/res/images/splash.png \
+  qt/res/images/splash_testnet.png \
+  qt/res/images/splash_regtest.png \
+  qt/res/images/piggie_logo_horizontal.png \
+  qt/res/images/downArrow_dark.png \
+  qt/res/images/downArrow_small_dark.png \
+  qt/res/images/downArrow_small.png \
+  qt/res/images/upArrow_small_dark.png \
+  qt/res/images/upArrow_small.png \
+  qt/res/images/leftArrow_small_dark.png \
+  qt/res/images/rightArrow_small_dark.png \
+  qt/res/images/qtreeview_selected.png
+
+RES_CSS = \
+  qt/res/css/default.css \
+  qt/piggie/res/css/style_dark.css \
+  qt/piggie/res/css/style_light.css
+
+RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
+
+BITCOIN_RC = qt/res/piggie-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_piggie_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# piggie-qt binary #
+qt_piggie_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_piggie_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_piggie_qt_SOURCES = qt/piggie.cpp
+if TARGET_DARWIN
+  qt_piggie_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_piggie_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_piggie_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_piggie_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_piggie_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_piggie_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_piggie_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_piggie_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/piggiestrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/piggiestrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/piggie.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/piggie_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name piggie_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name piggie $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_piggie_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+piggie_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_piggie_qt_OBJECTS) qt/piggie-qt$(EXEEXT) $(LIBBITCOINQT)
+
+piggie_qt : qt/piggie-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@
