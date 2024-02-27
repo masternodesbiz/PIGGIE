@@ -24,7 +24,7 @@ or telegram @derikglobal
 • Maturity: 30 Confirmations  
 • Ports: 38165 (p2p) / 38164 (rpc)
 
-• Explorer: https://piggieexplorer.masternodes.guru
+• Explorer: http://piggieexplorer.masternodes.guru
 
 
 ### Rewards Breakdown
