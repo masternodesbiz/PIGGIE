@@ -1,6 +1,6 @@
 # PIGGIE Wallets   MANUAL SWAP! 
 
-Fix Masternode Collateral: 50000
+Masternode Collateral: 50000
 
 ------
 
