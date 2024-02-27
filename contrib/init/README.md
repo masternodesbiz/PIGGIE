@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: piggied.service
-Upstart: piggied.conf
-OpenRC:  piggied.openrc
-         piggied.openrcconf
-CentOS:  piggied.init
-macOS:    org.piggie.piggied.plist
+SystemD: pivxd.service
+Upstart: pivxd.conf
+OpenRC:  pivxd.openrc
+         pivxd.openrcconf
+CentOS:  pivxd.init
+macOS:    org.pivx.pivxd.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

@@ -1,27 +1,27 @@
-Name "piggie Coin (64-bit)"
+Name "PIGGIE Core (64-bit)"
 
 RequestExecutionLevel highest
 SetCompressor /SOLID lzma
 
 # General Symbol Definitions
 !define REGKEY "SOFTWARE\$(^Name)"
-!define COMPANY "piggie Coin project"
-!define URL https://www.mypiggiesbank.com
+!define COMPANY "PIGGIE Core project"
+!define URL https://www.pivx.org
 
 # MUI Symbol Definitions
-!define MUI_ICON "/root/piggie1001/share/pixmaps/piggie.ico"
-!define MUI_WELCOMEFINISHPAGE_BITMAP "/root/piggie1001/share/pixmaps/nsis-wizard.bmp"
+!define MUI_ICON "/root/piggie2000/share/pixmaps/pivx.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "/root/piggie2000/share/pixmaps/nsis-wizard.bmp"
 !define MUI_HEADERIMAGE
 !define MUI_HEADERIMAGE_RIGHT
-!define MUI_HEADERIMAGE_BITMAP "/root/piggie1001/share/pixmaps/nsis-header.bmp"
+!define MUI_HEADERIMAGE_BITMAP "/root/piggie2000/share/pixmaps/nsis-header.bmp"
 !define MUI_FINISHPAGE_NOAUTOCLOSE
 !define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
 !define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
 !define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
-!define MUI_STARTMENUPAGE_DEFAULTFOLDER "piggie Coin"
-!define MUI_FINISHPAGE_RUN $INSTDIR\piggie-qt.exe
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER "PIGGIE Core"
+!define MUI_FINISHPAGE_RUN $INSTDIR\PIGGIE-qt.exe
 !define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
-!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/root/piggie1001/share/pixmaps/nsis-wizard.bmp"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "/root/piggie2000/share/pixmaps/nsis-wizard.bmp"
 !define MUI_UNFINISHPAGE_NOAUTOCLOSE
 
 # Included files
@@ -47,22 +47,22 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE English
 
 # Installer attributes
-OutFile /root/piggie1001/piggie-1.0.0-win64-setup.exe
+OutFile /root/piggie2000/PIGGIE-2.0.0-win64-setup.exe
 !if "64" == "64"
-InstallDir $PROGRAMFILES64\piggie
+InstallDir $PROGRAMFILES64\Pivx
 !else
-InstallDir $PROGRAMFILES\piggie
+InstallDir $PROGRAMFILES\Pivx
 !endif
 CRCCheck on
 XPStyle on
 BrandingText " "
 ShowInstDetails show
-VIProductVersion 1.0.0.0
-VIAddVersionKey ProductName "piggie Coin"
-VIAddVersionKey ProductVersion "1.0.0"
+VIProductVersion 2.0.0.0
+VIAddVersionKey ProductName "PIGGIE Core"
+VIAddVersionKey ProductVersion "2.0.0"
 VIAddVersionKey CompanyName "${COMPANY}"
 VIAddVersionKey CompanyWebsite "${URL}"
-VIAddVersionKey FileVersion "1.0.0"
+VIAddVersionKey FileVersion "2.0.0"
 VIAddVersionKey FileDescription ""
 VIAddVersionKey LegalCopyright ""
 InstallDirRegKey HKCU "${REGKEY}" Path
@@ -72,14 +72,14 @@ ShowUninstDetails show
 Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
-    File /root/piggie1001/release/piggie-qt.exe
-    File /oname=COPYING.txt /root/piggie1001/COPYING
-    File /oname=readme.txt /root/piggie1001/doc/README_windows.txt
+    File /root/piggie2000/release/PIGGIE-qt.exe
+    File /oname=COPYING.txt /root/piggie2000/COPYING
+    File /oname=readme.txt /root/piggie2000/doc/README_windows.txt
     SetOutPath $INSTDIR\daemon
-    File /root/piggie1001/release/piggied.exe
-    File /root/piggie1001/release/piggie-cli.exe
+    File /root/piggie2000/release/PIGGIEd.exe
+    File /root/piggie2000/release/PIGGIE-cli.exe
     SetOutPath $INSTDIR\doc
-    File /r /root/piggie1001/doc\*.*
+    File /r /root/piggie2000/doc\*.*
     SetOutPath $INSTDIR
     WriteRegStr HKCU "${REGKEY}\Components" Main 1
 SectionEnd
@@ -90,21 +90,22 @@ Section -post SEC0001
     WriteUninstaller $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
     CreateDirectory $SMPROGRAMS\$StartMenuGroup
-    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\piggie-qt.exe
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk" $INSTDIR\PIGGIE-qt.exe
+    CreateShortcut "$SMPROGRAMS\$StartMenuGroup\PIGGIE Core (testnet, 64-bit).lnk" "$INSTDIR\PIGGIE-qt.exe" "-testnet" "$INSTDIR\PIGGIE-qt.exe" 1
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk" $INSTDIR\uninstall.exe
     !insertmacro MUI_STARTMENU_WRITE_END
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayName "$(^Name)"
-    WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayVersion "1.0.0"
+    WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayVersion "2.0.0"
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" Publisher "${COMPANY}"
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" URLInfoAbout "${URL}"
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" DisplayIcon $INSTDIR\uninstall.exe
     WriteRegStr HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" UninstallString $INSTDIR\uninstall.exe
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoModify 1
     WriteRegDWORD HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)" NoRepair 1
-    WriteRegStr HKCR "piggie" "URL Protocol" ""
-    WriteRegStr HKCR "piggie" "" "URL:piggie"
-    WriteRegStr HKCR "piggie\DefaultIcon" "" $INSTDIR\piggie-qt.exe
-    WriteRegStr HKCR "piggie\shell\open\command" "" '"$INSTDIR\piggie-qt.exe" "%1"'
+    WriteRegStr HKCR "PIGGIE" "URL Protocol" ""
+    WriteRegStr HKCR "PIGGIE" "" "URL:Pivx"
+    WriteRegStr HKCR "PIGGIE\DefaultIcon" "" $INSTDIR\PIGGIE-qt.exe
+    WriteRegStr HKCR "PIGGIE\shell\open\command" "" '"$INSTDIR\PIGGIE-qt.exe" "%1"'
 SectionEnd
 
 # Macro for selecting uninstaller sections
@@ -122,7 +123,7 @@ done${UNSECTION_ID}:
 
 # Uninstaller sections
 Section /o -un.Main UNSEC0000
-    Delete /REBOOTOK $INSTDIR\piggie-qt.exe
+    Delete /REBOOTOK $INSTDIR\PIGGIE-qt.exe
     Delete /REBOOTOK $INSTDIR\COPYING.txt
     Delete /REBOOTOK $INSTDIR\readme.txt
     RMDir /r /REBOOTOK $INSTDIR\daemon
@@ -134,7 +135,8 @@ Section -un.post UNSEC0001
     DeleteRegKey HKCU "SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\$(^Name)"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\Uninstall $(^Name).lnk"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\$(^Name).lnk"
-    Delete /REBOOTOK "$SMSTARTUP\piggie.lnk"
+    Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\PIGGIE Core (testnet, 64-bit).lnk"
+    Delete /REBOOTOK "$SMSTARTUP\Pivx.lnk"
     Delete /REBOOTOK $INSTDIR\uninstall.exe
     Delete /REBOOTOK $INSTDIR\debug.log
     Delete /REBOOTOK $INSTDIR\db.log
@@ -142,7 +144,7 @@ Section -un.post UNSEC0001
     DeleteRegValue HKCU "${REGKEY}" Path
     DeleteRegKey /IfEmpty HKCU "${REGKEY}\Components"
     DeleteRegKey /IfEmpty HKCU "${REGKEY}"
-    DeleteRegKey HKCR "piggie"
+    DeleteRegKey HKCR "PIGGIE"
     RmDir /REBOOTOK $SMPROGRAMS\$StartMenuGroup
     RmDir /REBOOTOK $INSTDIR
     Push $R0

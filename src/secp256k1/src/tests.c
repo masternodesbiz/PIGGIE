@@ -659,7 +659,7 @@ void test_num_jacobi(void) {
     CHECK(secp256k1_num_jacobi(&n, &order) == 1);  /* sage confirms this is 1 */
 }
 
-void run_num_smpiggieests(void) {
+void run_num_smalltests(void) {
     int i;
     for (i = 0; i < 100*count; i++) {
         test_num_negate();
@@ -5015,7 +5015,7 @@ int main(int argc, char **argv) {
 
 #ifndef USE_NUM_NONE
     /* num tests */
-    run_num_smpiggieests();
+    run_num_smalltests();
 #endif
 
     /* scalar tests */

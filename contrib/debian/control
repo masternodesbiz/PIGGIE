@@ -1,4 +1,4 @@
-Source: piggie
+Source: PIGGIE
 Section: utils
 Priority: optional
 Maintainer: Fuzzbawls <fuzzbawls@gmail.com>
@@ -28,37 +28,37 @@ Build-Depends: debhelper,
  libzmq3-dev,
  dh-systemd
 Standards-Version: 3.9.2
-Homepage: http://www.mypiggiesbank.com
-Vcs-Git: git://github.com/derikglobal/piggie.git
-Vcs-Browser: http://github.com/derikglobal/piggie
+Homepage: https://www.masternodes.guru/piggie/
+Vcs-Git: git:github.com/PIGGIE/PIGGIE.git
+Vcs-Browser: https://github.com/masternodesguru/piggie/PIGGIE/
 
-Package: piggied
+Package: PIGGIEd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- piggie is a free open source peer-to-peer electronic cash system that
+ PIGGIE is a free, open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
  check for double-spending.
  .
  Full transaction history is stored locally at each client.  This
- requires 10+ GB of space, slowly growing.
+ requires 18.5+ GB of space, slowly growing.
  .
- This package provides the daemon, piggied, and the CLI tool
- piggie-cli to interact with the daemon.
+ This package provides the daemon, PIGGIEd, and the CLI tool
+ PIGGIE-cli to interact with the daemon.
 
-Package: piggie-qt
+Package: PIGGIE-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- piggie is a free open source peer-to-peer electronic cash system that
+ PIGGIE is a free, open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
  check for double-spending.
  .
  Full transaction history is stored locally at each client.  This
- requires 10+ GB of space, slowly growing.
+ requires 18.5+ GB of space, slowly growing.
  .
- This package provides piggie-Qt, a GUI for piggie based on Qt.
+ This package provides PIGGIE-Qt, a GUI for PIGGIE based on Qt.
