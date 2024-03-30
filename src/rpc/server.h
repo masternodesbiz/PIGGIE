@@ -268,6 +268,7 @@ extern UniValue getinfo(const JSONRPCRequest& request); // in rpc/misc.cpp
 extern UniValue logging(const JSONRPCRequest& request);
 extern UniValue mnsync(const JSONRPCRequest& request);
 extern UniValue spork(const JSONRPCRequest& request);
+extern UniValue getcollateral(const JSONRPCRequest& request);
 extern UniValue validateaddress(const JSONRPCRequest& request);
 extern UniValue createmultisig(const JSONRPCRequest& request);
 extern UniValue verifymessage(const JSONRPCRequest& request);
